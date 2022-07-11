@@ -1,8 +1,12 @@
 import React from 'react'; 
-import Football from './Car';
+import Car from './Car';
+import Goal from './Goal';
 function App() {
   return (
-    <Football/>
+    <>
+    <Car/>,
+   
+    </>
   );
 }
 

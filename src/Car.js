@@ -1,23 +1,38 @@
 
 
 
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+// import { Button } from "@mui/material";
+import { useState } from "react";
+import ReactDOM from "react-dom/client";
 
-function Football() {
-    const shoot = (a, b) => {
-      alert(b.type);
-      /*
-      'b' represents the React event that triggered the function,
-      in this case the 'click' event
-      */
-    }
+function Car() {
+  const [car, setCar] = useState({
+    brand: "Ford",
+    model: "Mustang",
+    year: "1964",
+    color: "red"
+  });
+//   const updateColor = () => {
+//     setCar(previousState => {
+//       return { ...previousState, color: "blue" }
+//     });
+//   }
+
+ 
+  return (
+    <>
+      <h1>My {car.brand}</h1>
+      <p>
+        It is a {car.color} {car.model} from {car.year}.
+      </p>
+
+      
+
+     <button onClick={()=>setCar((ps)=>{return{...ps,color:"orange"}})}>setCar</button>
+    </>
+  )
+}
+
+
   
-    return (
-      <button onClick={(event) => shoot("Goal!", event)}>Take the shot!</button>
-    );
-  }
-
-
-  
-export default Football;  
+export default Car  ;  
