@@ -1,7 +1,8 @@
-import Garage from './Car';
+import React from 'react'; 
+import Football from './Car';
 function App() {
   return (
-    <Garage/>
+    <Football/>
   );
 }
 
