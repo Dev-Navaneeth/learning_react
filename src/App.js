@@ -1,12 +1,12 @@
 import React from 'react'; 
 // import Car from './Car';
 // import Goal from './Goal';
-import DataTable from './DataTable';
+import Employeelist from './Employeelist';
 // import Counter from './UseEffect';
 function App() {
   return (
     <>
-   <DataTable/>
+  <Employeelist/>
     </>
   );
 }
