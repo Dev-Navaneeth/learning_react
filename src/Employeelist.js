@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import EmployeeForm from "./EmployeeForm";
 // import EmployeeTableRow from "./EmployeeTableRow";
 
 const Employeelist = () => {
@@ -37,7 +38,18 @@ const Employeelist = () => {
     //       return <EmployeeTableRow obj={res} key={i} />;
     //     });
     //   };
-
+    const deleteEmployee= (empid) => {
+     console.log(empid);
+      axios
+        .delete(
+  `http://localhost:3700/deleteEmp/${empid}`)
+        .then((res) => {
+          if (res.status === 200) {
+            alert("Student successfully deleted");
+            window.location.reload();
+          } else Promise.reject();
+        })
+        .catch((err) => alert("Something went wrong"));}
       return(
         <>
         
@@ -55,6 +67,8 @@ const Employeelist = () => {
               <th className="h4 text-center">City</th>
               <th className="h4 text-center">State</th>
               <th className="h4 text-center">Country</th>
+              <th className="h4 text-center">Edit</th>
+              <th className="h4 text-center">Delete</th>
            
             </tr>
           </thead>
@@ -72,6 +86,15 @@ const Employeelist = () => {
                       <td className="text-center p-3 lead">{data.cityname}</td>
                       <td className="text-center p-3 lead">{data.statename}</td>
                       <td className="text-center p-3 lead">{data.countryname}</td>
+                      <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Edit
+</button><EmployeeForm empid={data.empid}/></td>
+                      <td>
+     
+        <button size="sm" variant="danger"className="btn btn-danger" onClick={()=>deleteEmployee(data.empid)}>
+          Delete
+        </button>
+      </td>
                     </tr>
                   )
                 }) 
@@ -94,12 +117,3 @@ export default Employeelist;
 
 
 
-
-// https://ttprivatenew.s3.amazonaws.com/pulse/premkumar/attachments/19849391/TinyTake12-07-2022-08-58-21.mp4
-
-// Today Status:
-// - Data fetching and displaying using reactjs task completed
-// -Learned about CORS 
-// -Learned how to set jwt token in browser using axios
-// -Learned how to set access control, authorization through header using middleware 
-// Tommorow task: 
