@@ -1,127 +1,100 @@
 import React, { useState, useEffect } from "react";
-
-
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    
-    
-  }
-
-
-
-
-
-
-  
-const EmployeeForm = (props) => {
-console.log(props.empid);
-    const [empName, setEmpName] = useState("");
+const EmployeeForm = () => {
+const [empname, setEmpName] = useState("");
 const [age, setAge] = useState("");
 const [address, setAddress] = useState("");
 const [salary, setSalary] = useState("");
-
 const [city, setCity] = useState("");
 const [state, setState] = useState("");
 const [country, setCountry] = useState("");
-console.log(empName);   
-console.log(age);   
-console.log(address);   
-console.log(salary);   
+
+const handleSubmit = (event) => {
+    event.preventDefault();
+   }   
+
+const navigate=useNavigate()
+const params = useParams()
+const submitData =()=>{
   
-console.log(city);   
-console.log(state);   
-console.log(country);   
+    const updatedData={empname,age,address,salary,city,state,country}
+    console.log(updatedData);
+    axios.put(`http://localhost:3700/updateById/${params.id}`,updatedData)
+    .then(res=>{
+        console.log(res);
+        navigate('/')
+        
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+    
+    
+}
 
-
-// const updatedDetails = {
-//     "empname" : empName,
-//     "age":parseInt(age),
-//     "address":address,
-//     "salary":parseInt(salary),
-  
-//     "city":parseInt(city),
-//     "state":parseInt(state),
-//     "country":parseInt(country)
-// }
-// const jsonData = JSON.stringify(updatedDetails)
-
-
-
-const submitData = (id) => {
-    alert(id)
-    axios
-      .put(
-        "http://localhost:3700//updateEmp/" +
-          id,
-      )
-      .then((res) => {
-        if (res.status === 200) {
-          alert("Student successfully updated");
-         
-        } else Promise.reject();
-      })
-      .catch((err) => alert("Something went wrong"));
-  };
-  return (
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header bg-dark text-white">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+return (
+   
+     <div className="container">
+     <div className="card">
+      <div className="card-header p-2">
+      <h2>UPDATE fORM</h2>
       </div>
-      <div class="modal-body">
+      <div className="card-body">
       <form onSubmit={handleSubmit}>
         <div className="form-group">
 
-        <input name="empname" type="text" className="form-control" value={empName} 
+        <input name="empname" type="text" className="form-control" value={empname} 
         onChange={(e) => setEmpName(e.target.value)} placeholder={"Employee Name"}/>
         </div>
         <div className="form-group">
      
-        <input name="age" type="text" placeholder={"Age"} className="form-control mt-3" value={age} onChange={(e) => setAge(e.target.value) }
+        <input name="age" type="text" placeholder={"Age"} className="form-control mt-3 p-2" value={age} onChange={(e) => setAge(e.target.value) }
         />
         </div>
         <div className="form-group">
         
-        <input name="address" type="text" className="form-control mt-3" placeholder={"Address"} value={address} 
+        <input name="address" type="text" className="form-control mt-3 p-2" placeholder={"Address"} value={address} 
         onChange={(e) => setAddress(e.target.value)}/>
         </div>
         <div className="form-group">
      
-        <input name="salary" type="text" placeholder={"Salary"} className="form-control mt-3" value={salary} 
+        <input name="salary" type="text" placeholder={"Salary"} className="form-control mt-3 p-2" value={salary} 
         onChange={(e) => setSalary(e.target.value)}/>
         </div>
         
         <div className="form-group">
       
-        <input name="city" type="text" placeholder={"City"} className="form-control mt-3" value={city} 
+        <input name="city" type="text" placeholder={"City"} className="form-control mt-3 p-2" value={city} 
         onChange={(e) => setCity(e.target.value)}/>
         </div>
         <div className="form-group">
       
-        <input name="state" type="text" placeholder={"State"} className="form-control mt-3" value={state} 
+        <input name="state" type="text" placeholder={"State"} className="form-control mt-3 p-2" value={state} 
        onChange={(e) => setState(e.target.value)}/>
         </div>
         <div className="form-group">
        
-        <input name="country" type="text" placeholder={"Country"} className="form-control mt-3" value={country} 
+        <input name="country" type="text" placeholder={"Country"} className="form-control mt-3 p-2" value={country} 
        onChange={(e) => setCountry(e.target.value)}/>
         </div>
 
-        {/* <input type={"submit"} className={"btn btn-warning"} onSubmit={submitData} /> */}
+        
     </form>
       </div>
-      <div class="modal-footer bg-dark text-white">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" onClick={()=>submitData(props.empid)}>Save changes</button>
+      <div className="card-footer">
+      <input type={"submit"} className={"btn updateBtn"} onClick={submitData} />  
       </div>
-    </div>
-  </div>
-</div>
+
+     </div>
+
+     
+       
+     </div>
+    
+
+
    
   )
 }

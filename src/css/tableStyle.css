@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+
+
+body, html {
+    font-family: 'Roboto', sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+.table-container{
+    margin-top: 10%;
+}
+
+.table .thead{
+    background: #305ea1;
+    color: white;
+    
+}
+.table .thead th{
+    padding: 13px;
+    
+}
+
+.addSection{
+    margin-left: 45px;
+}
+
+.add-title{
+    font-size: 20px;
+    display: inline-block;
+
+}
+
+.addSection .addEmpBtn{
+    margin-left: 8px;
+    background: #225643;
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 17px;
+    margin-bottom: 4px;
+}
+
+tbody{
+    background: #c2c1bf;
+}
+
+tbody .edit-btn{
+    background:  #FFCC00;
+    font-weight: bold;
+}
+tbody .delete-btn{
+    background:  #FF0000;
+    font-weight: bold;
+}
+

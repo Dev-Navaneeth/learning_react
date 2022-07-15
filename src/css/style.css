@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+
+
+body, html {
+    font-family: 'Roboto', sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+
+.card{
+    width: 600px;
+    margin: 10% auto;
+    
+
+}
+
+.card .card-header h2{
+    color: white;
+    font-family: roboto;
+    font-weight: 500;
+    
+}
+
+.card .card-header,.card .card-footer{
+    background: #1e2833 ;
+    border-radius: 13px !important;
+    
+}
+
+.card-body{
+    background-color: aliceblue;
+}
+
+.card .card-footer .updateBtn{
+    background: #20497d;
+    margin: 0 41%;
+    color: white;
+}
+
+.form-control{
+    border-radius: 20px !important;
+}
