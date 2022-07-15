@@ -1,12 +1,10 @@
 import React, { useState} from "react";
 import axios from "axios";
-const handleSubmit = (event) => {
-    event.preventDefault();
-    
-    
-  } 
-  
+import { useNavigate } from "react-router-dom";
+
+ 
 const AddData = () => {
+    
     const [empId,setEmpId] = useState("");
     const [empName, setEmpName] = useState("");
 const [age, setAge] = useState("");
@@ -37,17 +35,20 @@ const updatedDetails = {
     "country":parseInt(country)
 }
 
-
-const submitData = ()=>{
+const navigate = useNavigate();
+const submitData = (event)=>{
+    event.preventDefault();
     const data = [parseInt(empId),empName,parseInt(age),address,parseInt(salary),parseInt(city),parseInt(state),parseInt(country)]
     // const data = updatedDetails
     console.log(data);
     axios.post("http://localhost:3700/registering",updatedDetails).then(res=>{
         console.log(res);
+        navigate("/")
     }).catch((err)=>{
         console.log(err.message);
     })
-    window.location.reload();
+
+    
 }
   return (
 
@@ -56,7 +57,7 @@ const submitData = ()=>{
     <div className="container mt-5">
        
     <h1>Add Employee:</h1>
-     <form onSubmit={handleSubmit} className={"mt-3"}>
+     <form onSubmit={submitData} className={"mt-3"}>
       <div className="form-group">
      
       <input name="empid" type="text" className="form-control mt-3" value={empId} 
@@ -104,8 +105,9 @@ const submitData = ()=>{
       </div>
 
      
- 
-      <input type="submit" className="btn btn-primary mt-3" onClick={submitData}/>
+{/*  
+      <input type="submit" className="btn btn-primary mt-3" onClick={submitData}/> */}
+      <button  type="submit" className="btn btn-primary mt-3" >Add data</button>
     
   </form>
 

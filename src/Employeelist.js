@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const Employeelist = () => {
+ 
     const [employee, setEmployee] = useState([]);
     let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzYWxhcnkiOjU5NzgzNCwiaWF0IjoxNjU3NjMzMzQxfQ.GNumNzEXd4ntmngC37t5IZIhtMqlrg5y4myDjGlm7aQ";
     const headers = {
@@ -69,7 +70,7 @@ const navigate=useNavigate()
       const passId = (empid)=>{
         
         navigate(`/employeeForm/`+empid) 
-        alert(empid)
+       
   
       }
       
@@ -86,7 +87,10 @@ const navigate=useNavigate()
   //   const [state, setState] = useState("");
   //   const [country, setCountry] = useState("");
         
-
+const navAdd = ()=>{
+  navigate("/addData")
+  window.location.reload()
+}
 
        
 
@@ -129,7 +133,7 @@ const navigate=useNavigate()
                       <td className="text-center p-3 lead">{data.cityname}</td>
                       <td className="text-center p-3 lead">{data.statename}</td>
                       <td className="text-center p-3 lead">{data.countryname}</td>
-                      <td><button type="button" class="btn edit-btn"  onClick={()=>passId(data.empid)}>Edit
+                      <td><button type="button" class="btn edit-btn"   onClick={()=>passId(data.empid)}>Edit
                       </button></td>
                       <td><button size="sm" className="btn delete-btn" onClick={()=>deleteEmployee(data.empid)}>
                       Delete</button></td>
@@ -146,9 +150,9 @@ const navigate=useNavigate()
         </table>
         
         <div className="addSection">
-          <h5 className="add-title">To add Employee:<Link to="/addData">
-            <button type="button" class="btn btn-sm addEmpBtn" >Add Employee </button></Link>
-        </h5>
+          <h5 className="add-title">To add Employee:  </h5>
+            <button type="button" class="btn btn-sm addEmpBtn"  onClick={navAdd}>Add Employee </button>
+       
         </div>
         <div></div>
       </div>
