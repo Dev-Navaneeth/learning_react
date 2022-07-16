@@ -10,19 +10,10 @@ const AddData = () => {
 const [age, setAge] = useState("");
 const [address, setAddress] = useState("");
 const [salary, setSalary] = useState("");
-// const [image, setImage] = useState("");
+
 const [city, setCity] = useState("");
 const [state, setState] = useState("");
-const [country, setCountry] = useState("");
-console.log(empId);   
-console.log(empName);   
-console.log(age);   
-console.log(address);   
-console.log(salary);   
-// console.log(image);   
-console.log(city);   
-console.log(state);   
-console.log(country);   
+const [country, setCountry] = useState("");  
 const updatedDetails = {
     "empid": empId,
     "empname" : empName,
@@ -83,11 +74,6 @@ const submitData = (event)=>{
       <input name="salary" placeholder={"Salary"} type="text" className="form-control mt-3" value={salary} 
       onChange={(e) => setSalary(e.target.value)}/>
       </div>
-      {/* <div className="form-group">
-
-      <input name="image" placeholder={"Select Image"} type="file" className="form-control mt-3" value={image } 
-      onChange={(e) => setImage(e.target.value)}/>
-      </div> */}
       <div className="form-group">
      
       <input name="city" placeholder={"City code"} type="text" className="form-control mt-3" value={city} 

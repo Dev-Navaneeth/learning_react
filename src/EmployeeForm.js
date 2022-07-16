@@ -1,47 +1,72 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { json } from "body-parser";
 
 const EmployeeForm = () => {
+
+
+// const [employee, setEmployee] = useState([]);
+
 const [empname, setEmpName] = useState("");
+console.log(empname);
 const [age, setAge] = useState("");
+console.log(age);
 const [address, setAddress] = useState("");
+console.log(address);
 const [salary, setSalary] = useState("");
+console.log(salary);
 const [city, setCity] = useState("");
+console.log(city);
 const [state, setState] = useState("");
+console.log(state);
 const [country, setCountry] = useState("");
+console.log(country);
 
-const [employee, setEmployee] = useState([]);
-console.log(JSON.stringify(employee));
 
-// useEffect(() => {
-//   axios.get(url, { headers })
-//     .then(({ data }) => {
-//       // console.log(data);
-//       setEmployee(data);
-//     })
-//     .catch((error) => {
-//       console.log(error);   
-//     });
-// }, []);
+
+
 
 
 
 const navigate=useNavigate()
 const params = useParams()
-const url = `http://localhost:3700/getById/${params.empid}`;
-const fetching = async () => {
-  try{
-      const res = await axios.get(url)
-      console.log("=======================");         
-      console.log(res.data[0].address);         
-      setEmployee(res)
-
-  } catch (error) {
-      console.log('error')
+useEffect(()=>{
+        
+  axios.get(`http://localhost:3700/getById/${params.empid}`).then(res=>{
+    setEmpName(res.data[0].empname);         
+    setAge(res.data[0].age);
+    setAddress(res.data[0].address);
+    setCity(res.data[0].cityname);
+    setSalary(res.data[0].salary);
+    setState(res.data[0].statename);
+    setCountry(res.data[0].countryname)
+          
   }
-}
-useEffect(()=>fetching(),[])
+          
+
+  )
+
+},[])
+// const url = `http://localhost:3700/getById/${params.empid}`;
+// const fetching = async () => {
+//   try{
+//       const res = await axios.get(url)
+//       console.log("=======================");   
+     
+//       setEmpName(res.data[0].empname);         
+//       setAge(res.data[0].age);
+//       setAddress(res.data[0].address);
+//       setCity(res.data[0].cityname);
+//       setSalary(res.data[0].salary);
+//       setState(res.data[0].state);
+//       setCountry(res.data[0].countryname)
+
+//   } catch (error) {
+//       console.log('error')
+//   }
+// }
+// useEffect(()=>fetching(),[])
 const submitData =(event)=>{
     event.preventDefault();
     const updatedData={empname,age,address,salary,city,state,country}
