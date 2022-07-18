@@ -3,34 +3,28 @@ import axios from "axios";
 // import EmployeeForm from "./EmployeeForm";
 import {Link} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { setEmployees } from "../redux/actions/employeeActions";
 
 
 
 const Employeelist = () => {
+  const employees = useSelector((state) => state.allEmployees.employees);
+ 
+
+  const dispatch = useDispatch();
  
     const [employee, setEmployee] = useState([]);
-    // let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzYWxhcnkiOjU5NzgzNCwiaWF0IjoxNjU3NjMzMzQxfQ.GNumNzEXd4ntmngC37t5IZIhtMqlrg5y4myDjGlm7aQ";
-    // const headers = {
-    //   "Content-Type": "application/json",
-    //   Authorization: token,
-    // };
-  //   const url = "http://localhost:3700/showEmpDetails";
- 
-  //   const fetching = async () => {
-    
-  //         const res = await axios.get(url,{headers})
-  //         setEmployee(res.data)
-    
-  // }
-  // useEffect(()=>fetching(),[])
+  
+  
 
   useEffect(()=>{
         
     axios.get('http://localhost:3700/showEmpDetails').then(res=>{
         setEmployee(res.data)
-            
+        dispatch(setEmployees(res.data))
+       
+
     }
             
 
@@ -38,6 +32,10 @@ const Employeelist = () => {
 
 },[])
 
+console.log(".................");
+console.log(employees);
+console.log(employee);
+console.log(".................");
     const deleteEmployee= async (empid) => {
      console.log(empid);
      await axios
@@ -45,7 +43,7 @@ const Employeelist = () => {
   `http://localhost:3700/deleteEmp/${empid}`)
         .then((res) => {
           if (res.status === 200) {
-            alert("Student successfully deleted");
+      
             window.location.reload();
           } else Promise.reject();
         })
@@ -99,7 +97,7 @@ const navigate=useNavigate();
           </thead>
           <tbody>
             {
-               employee.map((data,i) => {
+               employees.map((data,i) => {
                   return (
                     <tr key={i}>
                       <td className="text-center p-3 lead">{data.empid}</td>

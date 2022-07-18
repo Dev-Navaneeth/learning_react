@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
  
 const AddData = () => {
     
-    const [empId,setEmpId] = useState("");
-    const [empName, setEmpName] = useState("");
+const [empId,setEmpId] = useState("");
+const [empName, setEmpName] = useState("");
 const [age, setAge] = useState("");
 const [address, setAddress] = useState("");
 const [salary, setSalary] = useState("");

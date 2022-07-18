@@ -1,8 +1,8 @@
 import React from 'react'; 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Employeelist from './Employeelist';
-import EmployeeForm from './EmployeeForm';
-import AddData from './AddData';
+import Employeelist from './containers/Employeelist';
+import EmployeeForm from './containers/EmployeeForm';
+import AddData from './containers/AddData';
 import "./css/style.css";
 import "./css/tableStyle.css";
 
